@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Container, Typography, Box, Grid } from '@material-ui/core';
 import MeetingRoomIcon from '@material-ui/icons/MeetingRoom';
@@ -40,7 +40,7 @@ const useStyles = makeStyles(theme => ({
 
 function App() {
   const classes = useStyles();
-
+  const [occupied, setOccupied] = useState(false)
   return(
       <div className={classes.root}>
         <Container>
@@ -53,8 +53,8 @@ function App() {
             </Box>
           </Box>
           <Grid container spacing={3}>
-            <MeetingFlow />
-            <InfoCards />
+            <MeetingFlow setOccupied={setOccupied} />
+            <InfoCards occupied={occupied} />
           </Grid>
         </Container>
       </div>

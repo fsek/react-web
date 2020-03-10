@@ -28,7 +28,7 @@ export default function MeetingSocket(
 
   // 4. Define our default ActionCable callbacks.
   this.received = (data) => {
-    console.log(`Received Data: ${data}`);
+    console.log(`Received Data: ${JSON.stringify(data)}`);
     console.log(data)
     this.onUpdate(data);
   };

@@ -3,12 +3,20 @@ import { Paper, Typography, Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
+  infoCards: {
+    marginTop: '11px'
+  },
   infoPaper: {
     flexGrow: 0
   },
   meetingStatus: {
     extends: 'infoCard',
-    background: 'linear-gradient(146.5deg, #2FCB71 21.43%, #0E8942 82.73%);',
+    //background: 'linear-gradient(146.5deg, #2FCB71 21.43%, #0E8942 82.73%);',
+    //background: rgb(47,203,112);
+    background: 'linear-gradient(135deg, rgba(47,203,112,1) 10%, rgba(14,137,66,1) 30%, rgba(235,87,87,1) 70%, rgba(156,103,103,1) 90%)',
+    backgroundPosition: '10%',
+    backgroundSize: '300%',
+    //backgroundColor: 'green',
     padding: '32px 16px',
     textAlign: 'center',
     color: 'white',
@@ -16,8 +24,11 @@ const useStyles = makeStyles(theme => ({
       fontSize: '2rem'
     },
     '&.occupied': {
-      background: 'linear-gradient(146.5deg, #EB5757 21.43%, #9C6767 82.73%)',
+      //background: 'linear-gradient(146.5deg, #EB5757 21.43%, #9C6767 82.73%)',
+      //backgroundColor: 'red',
+      backgroundPosition: '100%',
     },
+    transition: '1s linear'
   },
   time: {
     textAlign: 'center',
@@ -34,7 +45,7 @@ const useStyles = makeStyles(theme => ({
 
 }))
 
-const InfoCards = () => {
+const InfoCards = ({occupied}) => {
   const classes = useStyles();
 
   const getTimeString = (dateObj) => {
@@ -52,7 +63,7 @@ const InfoCards = () => {
   const [time, setTime] = useState(getTimeString(new Date()));
   const [date, setDate] = useState(getDateString(new Date()));
 
-  const [occupied, setOccupied] = useState(true);
+  //const [occupied, setOccupied] = useState(true);
 
   useEffect(() => {
     setTimeout(() => {
@@ -63,7 +74,7 @@ const InfoCards = () => {
   })
 
   return (
-  <Grid container item spacing={2} md alignContent="flex-start">
+  <Grid container item spacing={2} md alignContent="flex-start" className={classes.infoCards}>
     <Grid className={classes.infoPaper} item xs={12}>
       <Paper className={`${classes.meetingStatus} ${occupied ? 'occupied' : ''}`} square={true}>
         <Typography variant="h5">
